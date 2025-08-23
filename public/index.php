@@ -21,6 +21,20 @@ spl_autoload_register(function ($class) {
 $page = $_GET['page'] ?? 'dashboard';
 $action = $_GET['action'] ?? 'index';
 
+// Special routing for charts (AJAX endpoints)
+if ($page === 'charts') {
+    $controller = new \app\controllers\ChartsController();
+    $chart = $_GET['chart'] ?? '';
+    if (method_exists($controller, $chart)) {
+        $controller->$chart();
+        exit;
+    } else {
+        http_response_code(404);
+        echo json_encode(['error' => 'Chart not found']);
+        exit;
+    }
+}
+
 // Routing
 switch ($page) {
     case 'devices':
@@ -63,14 +77,6 @@ switch ($page) {
             $controller->list();
         } else {
             $controller->profile();
-        }
-        break;
-    case 'charts':
-        $controller = new \app\controllers\ChartsController();
-        if ($action === 'osPie') {
-            $controller->osPie();
-        } elseif ($action === 'soldBar') {
-            $controller->soldBar();
         }
         break;
     case 'dashboard':

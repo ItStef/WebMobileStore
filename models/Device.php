@@ -137,4 +137,6 @@ class Device
         }
         return ['labels' => $labels, 'counts' => $counts];
     }
+
+    
 }

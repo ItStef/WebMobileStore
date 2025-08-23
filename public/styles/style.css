@@ -543,3 +543,50 @@ a:hover .fa-trash {
     margin: 0 auto;
     display: block;
 }
+
+.dashboard-flex {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 3em;
+    margin-top: 2em;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.admin-left {
+    flex: 1 1 350px;
+    min-width: 320px;
+    max-width: 420px;
+}
+.admin-charts {
+    flex: 2 1 600px;
+    min-width: 350px;
+    max-width: 700px;
+    background: #2d2046;
+    border-radius: 10px;
+    padding: 2em 2em 2em 2em;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+}
+.admin-charts section {
+    margin-bottom: 2.5em;
+}
+@media (max-width: 1000px) {
+    .dashboard-flex {
+        flex-direction: column;
+        gap: 2em;
+    }
+    .admin-charts, .admin-left {
+        max-width: 98vw;
+        width: 100%;
+    }
+}
+/* Make the pie chart smaller */
+#osPieChart {
+    max-width: 250px !important;
+    max-height: 250px !important;
+    margin: 0 auto;
+    display: block;
+}
