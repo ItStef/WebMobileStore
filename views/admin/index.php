@@ -40,111 +40,63 @@
 <script>
 // File upload label
 document.addEventListener('DOMContentLoaded', function() {
-    var input = document.querySelector('input[type=\"file\"][name=\"datafile\"]');
+    var input = document.querySelector('input[type="file"][name="datafile"]');
     var label = document.getElementById('file-chosen');
     if(input && label) {
         input.addEventListener('change', function(){
-            label.textContent = this.files[0] ? this.files[0].name : \"No file chosen\";
+            label.textContent = this.files[0] ? this.files[0].name : "No file chosen";
         });
     }
-});
 
-// Pie chart: Devices by OS
-fetch('/index.php?page=charts&chart=os')
-    .then(r => r.json())
-    .then(data => {
-        new Chart(document.getElementById('osPieChart'), {
-            type: 'pie',
-            data: {
-                labels: data.labels,
-                datasets: [{
-                    data: data.counts,
-                    backgroundColor: ['#b91d47','#00aba9','#2b5797','#e8c3b9','#1e7145','#c93','#393','#339','#933','#999']
-                }]
-            },
-            options: {
-                responsive: false,
-                plugins: {
-                    legend: { display: true },
-                    title: { display: true, text: 'Devices by Operating System' }
-                }
-            }
-        });
-    });
-
-// Bar chart: Units sold per device
-fetch('/index.php?page=charts&chart=sold')
-    .then(r => r.json())
-    .then(data => {
-        new Chart(document.getElementById('soldBarChart'), {
-            type: 'bar',
-            data: {
-                labels: data.labels,
-                datasets: [{
-                    label: 'Units Sold',
-                    data: data.counts,
-                    backgroundColor: '#339'
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { display: false },
-                    title: { display: true, text: 'Total Units Sold per Device' }
+    // Pie chart: Devices by OS
+    fetch('/index.php?page=charts&chart=osPie')
+        .then(r => r.json())
+        .then(data => {
+            new Chart(document.getElementById('osPieChart'), {
+                type: 'pie',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        data: data.counts,
+                        backgroundColor: ['#b91d47','#00aba9','#2b5797','#e8c3b9','#1e7145','#c93','#393','#339','#933','#999']
+                    }]
                 },
-                scales: {
-                    y: { beginAtZero: true }
+                options: {
+                    responsive: false,
+                    plugins: {
+                        legend: { display: true },
+                        title: { display: true, text: 'Devices by Operating System' }
+                    }
                 }
-            }
+            });
         });
-    });
+
+    // Bar chart: Units sold per device
+    fetch('/index.php?page=charts&chart=soldBar')
+        .then(r => r.json())
+        .then(data => {
+            new Chart(document.getElementById('soldBarChart'), {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Units Sold',
+                        data: data.counts,
+                        backgroundColor: '#339'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false },
+                        title: { display: true, text: 'Total Units Sold per Device' }
+                    },
+                    scales: {
+                        y: { beginAtZero: true }
+                    }
+                }
+            });
+        });
+});
 </script>
-<style>
-.admin-flex {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 3em;
-    margin-top: 2em;
-    width: 100%;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.admin-left {
-    flex: 1 1 350px;
-    min-width: 320px;
-    max-width: 420px;
-}
-.admin-charts {
-    flex: 2 1 600px;
-    min-width: 350px;
-    max-width: 700px;
-    background: #2d2046;
-    border-radius: 10px;
-    padding: 2em 2em 2em 2em;
-    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
-}
-.admin-charts section {
-    margin-bottom: 2.5em;
-}
-@media (max-width: 1000px) {
-    .admin-flex {
-        flex-direction: column;
-        gap: 2em;
-    }
-    .admin-charts, .admin-left {
-        max-width: 98vw;
-        width: 100%;
-    }
-}
-/* Make the pie chart smaller */
-#osPieChart {
-    max-width: 250px !important;
-    max-height: 250px !important;
-    margin: 0 auto;
-    display: block;
-}
-</style>
 <?php include __DIR__ . '/../partials/footer.php'; ?>

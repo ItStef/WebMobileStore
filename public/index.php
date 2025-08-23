@@ -45,6 +45,14 @@ switch ($page) {
             $controller->index();
         }
         break;
+    case 'charts':
+        $controller = new \app\controllers\ChartsController();
+        if ($action === 'osPie') {
+            $controller->osPie();
+        } elseif ($action === 'soldBar') {
+            $controller->soldBar();
+        }
+        break;
     case 'cart':
         $controller = new \app\controllers\CartController();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
