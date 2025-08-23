@@ -1,3 +1,63 @@
+/* --- Admin Panel Custom Styles --- */
+.admin-center-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+.admin-file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+    background: none !important;
+    color: #fff;
+    border-radius: 8px;
+    padding: 0.6em 1em;
+    cursor: pointer;
+    font-size: 1em;
+    border: none;
+    width: 270px;
+    min-width: 270px;
+    max-width: 270px;
+    margin: 0 auto;
+}
+.admin-file-upload input[type="file"] {
+    display: none;
+}
+.admin-file-upload span {
+    background: #6c3bb8;
+    color: #fff;
+    border-radius: 6px;
+    padding: 0.5em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 0.2em;
+    display: inline-block;
+    text-align: center;
+}
+.admin-import-btn {
+    background: #6c3bb8;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.7em 1.5em;
+    font-size: 1.1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.admin-import-btn:hover {
+    background: #8a4be7;
+}
+
 /* --- Cart Buttons --- */
 .cart-btn {
     background: #6c3bb8;
@@ -321,11 +381,6 @@ main {
     cursor: pointer;
     font-size: 1em;
     border: none;
-}
-
-.custom-file-upload:hover {
-    background: #4b256d;
-    border-color: #8a4be7;
 }
 
 .custom-file-upload input[type="file"] {
