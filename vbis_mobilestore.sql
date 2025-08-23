@@ -26,9 +26,9 @@ CREATE TABLE sales (
     FOREIGN KEY (device_id) REFERENCES devices(id)
 );
 
-INSERT IGNORE INTO users (username, password, role) VALUES
-('admin', '$2y$10$hV6KHT0r3wQ8tZCkKZ3jVewqql4xB1p5V5pPTeZc6xRZTcOYJzL9u', 'admin'),
-('user', '$2y$10$dZq9eG2vZpDGwUOCobKqY.8jZfYa6F7a6p6Lk3kB3n8zmskAAYEGe', 'user');
+-- INSERT IGNORE INTO users (username, password, role) VALUES
+-- ('admin', '$2y$10$hV6KHT0r3wQ8tZCkKZ3jVewqql4xB1p5V5pPTeZc6xRZTcOYJzL9u', 'admin'),
+-- ('user', '$2y$10$dZq9eG2vZpDGwUOCobKqY.8jZfYa6F7a6p6Lk3kB3n8zmskAAYEGe', 'user');
 
 INSERT IGNORE INTO devices (name, brand, price, year, os, image) VALUES
 ('iPhone 15', 'Apple', 999.99, 2023, 'iOS', 'iphone15.png'),

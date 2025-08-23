@@ -1,0 +1,490 @@
+/* --- Cart Buttons --- */
+.cart-btn {
+    background: #6c3bb8;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.4em 1em;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin: 0 0.1em;
+}
+.cart-btn-small {
+    font-size: 0.92em;
+    padding: 0.25em 0.7em;
+    min-width: 2.2em;
+}
+.cart-btn:hover {
+    background: #8a4be7;
+}
+
+/* --- Place Order Button --- */
+.dashboard-link,
+button[name="order"],
+button.dashboard-link {
+    background: #6c3bb8 !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 6px !important;
+    font-size: 1.1em !important;
+    font-weight: 500 !important;
+    box-shadow: none !important;
+    outline: none !important;
+    padding: 0.7em 1.5em !important;
+    margin-top: 1em;
+    transition: background 0.2s;
+}
+.dashboard-link:hover,
+button[name="order"]:hover,
+button.dashboard-link:hover {
+    background: #8a4be7 !important;
+    color: #fff !important;
+}
+
+/* --- Device Image Box --- */
+.device-img-box {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+.device-img {
+    width: 60px;
+    height: auto;
+    border-radius: 6px;
+    background: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* --- Add to Cart Button --- */
+.add-to-cart-btn {
+    background: #6c3bb8;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin: 0.2em 0;
+    box-shadow: none;
+    outline: none;
+    display: inline-block;
+}
+.add-to-cart-btn:hover {
+    background: #8a4be7;
+    color: #fff;
+}
+
+/* --- General Styles --- */
+body {
+    background: #23232b;
+    color: #f5f5f5;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* --- Navbar --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2d2046;
+    padding: 0.7em 2em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 10;
+}
+
+.nav-title {
+    font-size: 1.4em;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* --- Navbar Buttons Square and Small --- */
+.nav-links {
+    display: flex;
+    gap: 1.1em;
+    align-items: center;
+    position: relative;
+}
+.nav-links a {
+    color: #fff;
+    background: #6c3bb8;
+    width: 6em;
+    height: 3.2em;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.15em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s;
+    position: relative;
+    padding: 0;
+    min-width: 3.2em;
+    min-height: 3.2em;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+.nav-links a:hover {
+    background: #8a4be7;
+    color: #fff;
+}
+
+/* --- Cart Icon --- */
+.cart-link {
+    position: relative;
+}
+.cart-count {
+    position: absolute;
+    top: -8px; right: -8px;
+    background: #c33; color: #fff;
+    border-radius: 50%; padding: 2px 6px;
+    font-size: 0.8em;
+}
+
+/* --- Main and Dashboard --- */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard {
+    background: #3a186b;
+    color: #fff;
+    padding: 2em 2.5em;
+    border-radius: 10px;
+    margin: 3em auto 0 auto;
+    max-width: 600px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.dashboard h1 {
+    margin-top: 0;
+    font-size: 2em;
+    letter-spacing: 1px;
+}
+
+.dashboard section {
+    margin-bottom: 2em;
+}
+
+.dashboard-link {
+    display: inline-block;
+    margin-top: 1em;
+    background: #6c3bb8;
+    color: #fff;
+    padding: 0.7em 1.5em;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+}
+.dashboard-link:hover {
+    background: #8a4be7;
+    color: #fff;
+}
+
+/* --- Forms --- */
+.register-form,
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1em;
+}
+
+.register-form label,
+.login-form label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1em;
+    gap: 0.3em;
+    width: 100%;
+    margin-bottom: 0.7em;
+}
+
+.register-form input[type="text"],
+.register-form input[type="password"],
+.register-form input[type="number"],
+.register-form input[type="file"],
+.login-form input[type="text"],
+.login-form input[type="password"] {
+    width: 270px;
+    box-sizing: border-box;
+    background: #fff !important;
+    color: #23232b !important;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7em 1em;
+    font-size: 1em;
+    margin-top: 0.1em;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(44, 32, 70, 0.08);
+    transition: box-shadow 0.2s;
+}
+
+.register-form input[type="file"] {
+    padding: 0.5em 1em;
+    background: #f5f5f5 !important;
+    color: #23232b !important;
+    border: 1px solid #ccc;
+}
+
+.register-form input:focus,
+.login-form input:focus {
+    outline: 2px solid #8a4be7;
+    box-shadow: 0 0 0 2px #8a4be7;
+}
+
+.register-form button,
+.login-form button {
+    margin-top: 0.5em;
+    background: #6c3bb8;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7em 1.5em;
+    font-size: 1.1em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.register-form button:hover,
+.login-form button:hover {
+    background: #8a4be7;
+}
+
+/* --- Messages --- */
+.register-msg,
+.login-msg {
+    background: #b94a4a;
+    color: #fff;
+    padding: 0.7em 1em;
+    border-radius: 6px;
+    margin-bottom: 1em;
+    font-size: 1em;
+}
+
+/* --- Links --- */
+.register-links,
+.login-links {
+    margin-top: 1.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.register-links a,
+.login-links a {
+    color: #8a4be7;
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.2s;
+}
+
+.register-links a:hover,
+.login-links a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* --- Custom File Upload --- */
+.custom-file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+    background: none !important;
+    color: #fff;
+    border-radius: 8px;
+    padding: 0.6em 1em;
+    cursor: pointer;
+    font-size: 1em;
+    border: none;
+}
+
+.custom-file-upload:hover {
+    background: #4b256d;
+    border-color: #8a4be7;
+}
+
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+
+#file-chosen {
+    font-style: italic;
+    color: #ccc;
+}
+
+.custom-file-upload::after {
+    content: "Choose file";
+    background: #6c3bb8;
+    color: #fff;
+    border-radius: 6px;
+    padding: 0.5em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 0.2em;
+    display: inline-block;
+}
+
+/* --- Table & Pagination --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.5em;
+    background: #2d2046;
+    color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 0.7em 0.5em;
+    text-align: center;
+}
+
+th {
+    background: #3a186b;
+    font-weight: 600;
+}
+
+tr:nth-child(even) {
+    background: #2d2046;
+}
+
+tr:nth-child(odd) {
+    background: #251a38;
+}
+
+.no-img {
+    color: #aaa;
+    font-size: 1.5em;
+}
+
+.pagination {
+    margin-bottom: 1.5em;
+}
+
+.pagination a {
+    display: inline-block;
+    color: #23232b;
+    background: #fff;
+    border-radius: 4px;
+    padding: 0.4em 0.9em;
+    margin: 0 0.15em;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.2s, color 0.2s;
+}
+
+.pagination a.active,
+.pagination a:hover {
+    background: #6c3bb8;
+    color: #fff;
+}
+
+/* --- Font Awesome Icon Colors --- */
+.fa-edit,
+.fa-trash {
+    color: #fff !important;
+    transition: color 0.2s;
+}
+
+a:hover .fa-edit,
+a:hover .fa-trash {
+    color: #8a4be7 !important;
+}
+
+/* --- Make year and price boxes white in add device --- */
+.register-form input[type=\"number\"] {
+    background: #fff !important;
+    color: #23232b !important;
+    border: none;
+    border-radius: 6px;
+    padding: 0.6em;
+    font-size: 1em;
+    margin-top: 0.1em;
+}
+
+/* --- Login/Register Container --- */
+.login-container, .register-container {
+    background: #3a186b;
+    color: #fff;
+    padding: 2em 2.5em;
+    border-radius: 10px;
+    margin: 3em auto 0 auto;
+    max-width: 400px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+/* --- Admin Panel Flex Layout --- */
+.admin-flex {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 3em;
+    margin-top: 2em;
+    width: 100%;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.admin-left {
+    flex: 1 1 350px;
+    min-width: 320px;
+    max-width: 420px;
+}
+.admin-charts {
+    flex: 2 1 600px;
+    min-width: 350px;
+    max-width: 700px;
+    background: #2d2046;
+    border-radius: 10px;
+    padding: 2em 2em 2em 2em;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+}
+.admin-charts section {
+    margin-bottom: 2.5em;
+}
+@media (max-width: 1000px) {
+    .admin-flex {
+        flex-direction: column;
+        gap: 2em;
+    }
+    .admin-charts, .admin-left {
+        max-width: 98vw;
+        width: 100%;
+    }
+}
+/* Make the pie chart smaller */
+#osPieChart {
+    max-width: 250px !important;
+    max-height: 250px !important;
+    margin: 0 auto;
+    display: block;
+}

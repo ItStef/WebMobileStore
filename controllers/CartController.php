@@ -47,6 +47,16 @@ class CartController extends BaseController
             $this->redirect('cart');
         }
 
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sub_qty'])) {
+            $subId = (int)$_POST['sub_qty'];
+            if (isset($_SESSION['cart'][$subId]) && $_SESSION['cart'][$subId] > 1) {
+                $_SESSION['cart'][$subId]--;
+            } elseif (isset($_SESSION['cart'][$subId])) {
+                unset($_SESSION['cart'][$subId]);
+            }
+            $this->redirect('cart');
+        }
+
         $cart = $_SESSION['cart'] ?? [];
         $devices = [];
         if ($cart) {

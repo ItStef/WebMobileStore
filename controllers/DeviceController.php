@@ -10,8 +10,21 @@ class DeviceController extends BaseController
 {
     public function index()
     {
+        $msg = "";
+        // Handle Add to Cart POST
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
+            $id = (int)$_POST['add_to_cart'];
+            if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
+            if (isset($_SESSION['cart'][$id])) {
+                $_SESSION['cart'][$id]++;
+            } else {
+                $_SESSION['cart'][$id] = 1;
+            }
+            $msg = "Added to cart!";
+        }
+
         $devices = Device::all();
-        $this->render('devices/index', ['devices' => $devices]);
+        $this->render('devices/index', ['devices' => $devices, 'msg' => $msg]);
     }
 
     public function add()
