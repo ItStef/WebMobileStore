@@ -3,6 +3,9 @@
     <h1>Your Cart</h1>
     <?php if (!empty($msg)) echo "<div class='register-msg' style='background:#4caf50;'>$msg</div>"; ?>
     <?php if (empty($devices)): ?>
+        <?php if (!isset($_SESSION['user']) && !isset($_SESSION['admin'])): ?>
+            <h3>Please log in to view your cart.</h3>
+        <?php endif; ?>
         <p>Cart is empty.</p>
     <?php else: ?>
         <form method="post">

@@ -8,7 +8,6 @@ use app\models\User;
 
 class UserController extends BaseController
 {
-    // Show own profile
     public function profile()
     {
         Auth::requireLogin();
@@ -16,7 +15,6 @@ class UserController extends BaseController
         $this->render('users/profile', ['user' => $user]);
     }
 
-    // Edit own profile (password change)
     public function edit()
     {
         Auth::requireLogin();
@@ -35,7 +33,6 @@ class UserController extends BaseController
         $this->render('users/edit', ['user' => $user, 'msg' => $msg]);
     }
 
-    // Admin: list all users
     public function list()
     {
         Auth::requireAdmin();

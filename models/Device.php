@@ -43,7 +43,22 @@ class Device
         $stmt->execute();
         return $stmt->insert_id;
     }
+        public static function updatePrice($id, $new_price)
+    {
+        $conn = (new DbConnection())->connect();
+        $stmt = $conn->prepare("UPDATE devices SET price = ? WHERE id = ?");
+        $stmt->bind_param("di", $new_price, $id);
+        $stmt->execute();
+    }
 
+    public static function delete($id)
+    {
+        $conn = (new DbConnection())->connect();
+        $stmt = $conn->prepare("DELETE FROM devices WHERE id = ?");
+        $stmt->bind_param("i", $id);
+        $stmt->execute();
+    }
+    
     public static function import($file)
     {
         $conn = (new DbConnection())->connect();

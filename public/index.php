@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Autoload using PSR-4
 spl_autoload_register(function ($class) {
     $prefix = 'app\\';
     $base_dir = __DIR__ . '/../';
@@ -17,11 +16,9 @@ spl_autoload_register(function ($class) {
     }
 });
 
-// Parse routing parameters
 $page = $_GET['page'] ?? 'dashboard';
 $action = $_GET['action'] ?? 'index';
 
-// Special routing for charts (AJAX endpoints)
 if ($page === 'charts') {
     $controller = new \app\controllers\ChartsController();
     $chart = $_GET['chart'] ?? '';
@@ -35,12 +32,15 @@ if ($page === 'charts') {
     }
 }
 
-// Routing
 switch ($page) {
     case 'devices':
         $controller = new \app\controllers\DeviceController();
         if ($action === 'add') {
             $controller->add();
+        } elseif ($action === 'edit_price') {
+            $controller->edit_price();
+        } elseif ($action === 'delete') {
+            $controller->delete();
         } else {
             $controller->index();
         }
@@ -88,9 +88,12 @@ switch ($page) {
         }
         break;
     case 'dashboard':
-    default:
         $controller = new \app\controllers\DashboardController();
         $controller->index();
         break;
+    default:
+        http_response_code(404);
+        include __DIR__ . '/404.php';
+        exit;
 }
 ?>

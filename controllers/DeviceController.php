@@ -11,7 +11,6 @@ class DeviceController extends BaseController
     public function index()
     {
         $msg = "";
-        // Handle Add to Cart POST
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
             $id = (int)$_POST['add_to_cart'];
             if (!isset($_SESSION['cart'])) $_SESSION['cart'] = [];
@@ -51,4 +50,32 @@ class DeviceController extends BaseController
         }
         $this->render('devices/add', ['msg' => $msg]);
     }
+
+    public function edit_price()
+    {
+    Auth::requireAdmin();
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $id = (int)($_POST['device_id'] ?? 0);
+        $new_price = (float)($_POST['new_price'] ?? 0);
+        if ($id && $new_price >= 0) {
+            Device::updatePrice($id, $new_price);
+        }
+    }
+    header('Location: /?page=devices');
+    exit;
+    }
+
+    public function delete()
+    {
+        Auth::requireAdmin();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = (int)($_POST['device_id'] ?? 0);
+            if ($id) {
+                Device::delete($id);
+            }
+        }
+        header('Location: /?page=devices');
+        exit;
+    }
+
 }

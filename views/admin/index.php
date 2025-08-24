@@ -38,7 +38,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-// File upload label
 document.addEventListener('DOMContentLoaded', function() {
     var input = document.querySelector('input[type="file"][name="datafile"]');
     var label = document.getElementById('file-chosen');
@@ -48,7 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Pie chart: Devices by OS
     fetch('/index.php?page=charts&chart=osPie')
         .then(r => r.json())
         .then(data => {
@@ -71,7 +69,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-    // Bar chart: Units sold per device
     fetch('/index.php?page=charts&chart=soldBar')
         .then(r => r.json())
         .then(data => {
