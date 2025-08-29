@@ -51,6 +51,8 @@ session_start();
                 $controller->osPie();
             } elseif ($action === 'soldBar') {
                 $controller->soldBar();
+            } elseif ($action === 'brandDoughnut') {
+                $controller->brandDoughnut();
             }
             break;
         case 'cart':

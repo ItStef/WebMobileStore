@@ -13,8 +13,10 @@ class CartController extends BaseController
         $cart = $_SESSION['cart'] ?? [];
         $devices = [];
         $total = 0.0;
+
         if ($cart) {
             $ids = array_keys($cart);
+            $ids = array_unique($ids); // Fix: osigurava da nema duplikata
             $devices = Device::findMany($ids);
             foreach ($devices as &$device) {
                 $device['quantity'] = $cart[$device['id']];
@@ -22,56 +24,42 @@ class CartController extends BaseController
                 $total += $device['subtotal'];
             }
         }
-        $msg = "";
-        if (isset($_GET['ordered'])) {
-            $msg = "Order placed! Thank you.";
-        }
+
+        $msg = isset($_GET['ordered']) ? "Order placed! Thank you." : "";
         $this->render('cart/index', ['devices' => $devices, 'total' => $total, 'msg' => $msg]);
     }
 
     public function update()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove'])) {
-            $removeId = (int)$_POST['remove'];
-            if (isset($_SESSION['cart'][$removeId])) {
-                unset($_SESSION['cart'][$removeId]);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['remove'])) {
+                unset($_SESSION['cart'][(int)$_POST['remove']]);
+            }
+            if (isset($_POST['add_qty'])) {
+                $id = (int)$_POST['add_qty'];
+                if (isset($_SESSION['cart'][$id])) $_SESSION['cart'][$id]++;
+            }
+            if (isset($_POST['sub_qty'])) {
+                $id = (int)$_POST['sub_qty'];
+                if (isset($_SESSION['cart'][$id]) && $_SESSION['cart'][$id] > 1) {
+                    $_SESSION['cart'][$id]--;
+                } else {
+                    unset($_SESSION['cart'][$id]);
+                }
+            }
+            // Order
+            if (isset($_POST['order']) && !empty($_SESSION['cart'])) {
+                $cart = $_SESSION['cart'];
+                $ids = array_keys($cart);
+                $ids = array_unique($ids); 
+                $devices = Device::findMany($ids);
+                foreach ($devices as $device) {
+                    Sale::create($device['id'], $cart[$device['id']]);
+                }
+                $_SESSION['cart'] = [];
+                $this->redirect('cart', ['ordered' => 1]);
             }
             $this->redirect('cart');
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_qty'])) {
-            $addId = (int)$_POST['add_qty'];
-            if (isset($_SESSION['cart'][$addId])) {
-                $_SESSION['cart'][$addId]++;
-            }
-            $this->redirect('cart');
-        }
-
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['sub_qty'])) {
-            $subId = (int)$_POST['sub_qty'];
-            if (isset($_SESSION['cart'][$subId]) && $_SESSION['cart'][$subId] > 1) {
-                $_SESSION['cart'][$subId]--;
-            } elseif (isset($_SESSION['cart'][$subId])) {
-                unset($_SESSION['cart'][$subId]);
-            }
-            $this->redirect('cart');
-        }
-
-        $cart = $_SESSION['cart'] ?? [];
-        $devices = [];
-        if ($cart) {
-            $ids = array_keys($cart);
-            $devices = Device::findMany($ids);
-            foreach ($devices as &$device) {
-                $device['quantity'] = $cart[$device['id']];
-            }
-        }
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order']) && $devices) {
-            foreach ($devices as $device) {
-                Sale::create($device['id'], $device['quantity']);
-            }
-            $_SESSION['cart'] = [];
-            $this->redirect('cart', ['ordered' => 1]);
         }
     }
 }

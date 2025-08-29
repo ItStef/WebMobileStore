@@ -33,6 +33,10 @@
             <h2>Total Units Sold per Device</h2>
             <canvas id="soldBarChart" width="400" height="200"></canvas>
         </section>
+        <section style="margin-top:2em;">
+            <h2>Udeo brendova</h2>
+            <canvas id="brandDoughnutChart" width="250" height="250"></canvas>
+        </section>
     </div>
 </div>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -90,6 +94,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     scales: {
                         y: { beginAtZero: true }
+                    }
+                }
+            });
+        });
+
+    fetch('/index.php?page=charts&chart=brandDoughnut')
+        .then(r => r.json())
+        .then(data => {
+            new Chart(document.getElementById('brandDoughnutChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        data: data.counts,
+                        backgroundColor: ['#6c3bb8','#8a4be7','#339','#c93','#393','#933','#999']
+                    }]
+                },
+                options: {
+                    responsive: false,
+                    plugins: {
+                        legend: { display: true },
+                        title: { display: true, text: 'Udeo brendova' }
                     }
                 }
             });

@@ -153,5 +153,15 @@ class Device
         return ['labels' => $labels, 'counts' => $counts];
     }
 
-    
+    public static function brandStats() {
+        $conn = (new DbConnection())->connect();
+        $result = $conn->query("SELECT brand, COUNT(*) as count FROM devices GROUP BY brand");
+        $labels = []; $counts = [];
+        while ($row = $result->fetch_assoc()) {
+            $labels[] = $row['brand'];
+            $counts[] = (int)$row['count'];
+        }
+        return ['labels' => $labels, 'counts' => $counts];
+    }
+        
 }

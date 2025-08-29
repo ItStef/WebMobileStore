@@ -22,4 +22,15 @@ class ChartsController extends BaseController
         echo json_encode($data);
         exit;
     }
+
+// API za doughnut chart (udeo brendova)
+    public function brandDoughnut() {
+        $data = Device::brandStats();
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($data);
+        exit;
+    }
+
+
+
 }
